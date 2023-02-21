@@ -41,6 +41,15 @@ Menu, tray, add, 프로그램 재시작(F8), F8
 Menu, tray, add, 프로그램 종료(Ctrl+Q), ^Q
 
 ;스킨 입히기------------------------------------------------------------------------------------
+SkinForm(Param1 = "Apply", DLL = "", SkinName = ""){
+	if(Param1 = Apply){
+		DllCall("LoadLibrary", str, DLL)
+		DllCall(DLL . "\USkinInit", Int,0, Int,0, AStr, SkinName)
+	}else if(Param1 = 0){
+		DllCall(DLL . "\USkinExit")
+		}
+}
+
 FileInstall, Skin.zip, %A_Temp%\Skin.zip, 1  ;ZIP 파일
 
 Zip := ComObjCreate("Shell.Application")  ;쉘 오브젝트 생성
@@ -456,7 +465,7 @@ Gui, 3:Add, DropDownList, x102 y169 w280 vDrop8, %OutList8%
 Gui, 3:Add, GroupBox, x402 y9 w370 h190 , 실행 방법 설명
 Gui, 3:Add, Text, x422 y29 w340 h160 , *위에서부터 순서대로 강좌를 입력합니다.`n듣지않거나 없는 강좌는 '(없음)'또는 공백으로 설정하십시오.`n`n-추가사항: 이 프로그램은 방학 신청 용으로 특수 개조되어`, 공강은 예상치 못한 에러를 일으킬 수 있음.`n따라서 비인기 강좌로 채워두는 것이 좋을 듯함.`n`n각 교시에 해당하는 강좌를 선택한 뒤 '자동화 작업 시작' 버튼을 눌러 대기.`n`n단`, 해당 버튼을 너무 일찍 누르면 서버에 과도한 트래픽을 보내 차단될 수 있으니`, 8시 58~59분경에 누를것.
 Gui, 3:Add, GroupBox, x12 y209 w380 h150 , 안내사항
-Gui, 3:Add, Text, x22 y229 w360 h20 , v%PatVersion% _ For Hamhyun AfterSchool
+Gui, 3:Add, Text, x22 y229 w360 h20 , v%PatVersion% _ For H______ AfterSchool
 Gui, 3:Add, Text, x22 y259 w360 h20 , %ClassNotice%
 Gui, 3:Add, Text, x22 y289 w360 h20 , 패치내역 / 공지사항 :
 Gui, 3:Add, Text, x22 y309 w360 h40 , %PatLog%
